@@ -1,0 +1,13 @@
+services:
+  - name: rednote-downloader
+    type: web
+    ports:
+      - port: 5050
+        protocol: http
+    health:
+      path: /health
+      port: 5050
+    resources:
+      instance_type: nano
+    regions:
+      - was
