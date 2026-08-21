@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% block title %}How to Download RedNote Live Photos (with Animation){% endblock %}
+{% block description %}RedNote Live Photos combine still images with short video clips. Learn how to download and save RedNote Live Photos with full animation on any device.{% endblock %}
+{% block keywords %}rednote live photo download, xiaohongshu live photo save, download live photo from rednote, rednote animation download{% endblock %}
+
+{% block content %}
+<div class="seo-page">
+  <h1>How to Download RedNote Live Photos (with Animation)</h1>
+  <p class="last-updated"><strong>Published:</strong> August 21, 2026 · <strong>Reading time:</strong> 4 minutes</p>
+
+  <p>RedNote (Xiaohongshu) has a unique feature called <strong>Live Photos</strong> — similar to Apple's Live Photos on iPhone. A Live Photo combines a high-quality still image with a short video clip (usually 1-3 seconds). When you view a Live Photo on RedNote, you see a static image, but pressing and holding brings the image to life with motion.</p>
+
+  <p>The challenge? Most video downloaders only look for standard video posts and miss Live Photos entirely, because the video component is hidden inside the image data. Our <a href=".">RedNote Video Downloader</a> has built-in Live Photo support, making it one of the few tools that can extract the video component from these posts.</p>
+
+  <h2>What Are RedNote Live Photos?</h2>
+  <p>A Live Photo on RedNote is a post that appears to be a regular photo but actually contains an embedded video stream. When a user uploads a Live Photo, Xiaohongshu stores both the still image and a short video clip. On the platform, users can press and hold the image to play the video animation.</p>
+
+  <p>Live Photos are different from regular video posts. Standard video posts appear in the video feed and have a play button. Live Photos appear in the photo feed and look like static images — the video component is hidden until you interact with them.</p>
+
+  <h2>How Our Tool Detects Live Photos</h2>
+  <p>When you paste a RedNote URL into our downloader, the tool first tries standard video extraction using yt-dlp. If no video is found, it automatically falls back to scraping the post page and looking for Live Photo video streams hidden in the page's embedded data (specifically in the <code>imageList[].stream</code> field of the page's JSON data).</p>
+
+  <p>This dual approach means our tool can handle both regular video posts and Live Photos seamlessly. You do not need to do anything differently — just paste the URL and the tool figures out the content type automatically.</p>
+
+  <h2>Step-by-Step: Downloading a Live Photo</h2>
+  <ol>
+    <li><strong>Find a Live Photo on RedNote:</strong> Open Xiaohongshu and look for posts that show a "Live Photo" badge or icon. These posts have an animated component.</li>
+    <li><strong>Copy the URL:</strong> Tap Share and copy the link to the post.</li>
+    <li><strong>Paste in our tool:</strong> Open the <a href=".">RedNote Video Downloader</a> and paste the URL.</li>
+    <li><strong>Analyze:</strong> Click Analyze. If it is a Live Photo, the tool will detect the hidden video stream and display download options.</li>
+    <li><strong>Download:</strong> Select your preferred quality and download the video file (MP4 format).</li>
+  </ol>
+
+  <h2>What You Get When You Download a Live Photo</h2>
+  <p>When you download a RedNote Live Photo through our tool, you get the <strong>video component</strong> as an MP4 file. This is the animated part of the Live Photo — the short clip that plays when you press and hold on the image in the RedNote app.</p>
+
+  <p>If you also want the still image component, you would need to take a screenshot of the first frame or use a separate image downloader. Our tool focuses on extracting the video content.</p>
+
+  <h2>Quality of Downloaded Live Photos</h2>
+  <p>Live Photo video clips are typically shorter and lower resolution than standard video posts. The quality depends on what the creator originally uploaded. In most cases, you can expect:</p>
+  <ul>
+    <li>Duration: 1-5 seconds</li>
+    <li>Resolution: 720p to 1080p</li>
+    <li>Format: MP4 with H.264 or H.265 codec</li>
+  </ul>
+
+  <h2>Common Issues with Live Photo Downloads</h2>
+  <h3>"No video formats found" error</h3>
+  <p>If the tool says "No video formats found," the post may not contain a Live Photo after all — it could be a regular image post without an animated component. Try a different post or verify that the post has the Live Photo indicator.</p>
+
+  <h3>Downloaded file is very short</h3>
+  <p>This is expected. Live Photo video clips are typically 1-3 seconds long. The short duration is the nature of Live Photos, not a download error.</p>
+
+  <h3>The animation does not play</h3>
+  <p>Make sure you are opening the downloaded file in a video player (like VLC or your phone's default video player). The file is a standard MP4 and should play on any device.</p>
+
+  <h2>Conclusion</h2>
+  <p>RedNote Live Photos are a creative format that combines photography with motion. Our downloader is one of the few tools that can extract the video component from these posts. Just paste the URL, and the tool handles the rest — no special configuration needed.</p>
+  <p>For more information about downloading RedNote content, visit our <a href="faq">FAQ page</a> or read our <a href="how-to-download">complete download guide</a>.</p>
+</div>
+{% endblock %}

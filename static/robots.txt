@@ -1,5 +1,30 @@
+# RedNote Video Downloader — robots.txt
+# Allow all crawlers including AI search engines
 User-agent: *
 Allow: /
 Disallow: /api/
 
-Sitemap: https://cheese-leader-wink-fantasy.2n6.me/rnd/sitemap.xml
+# Explicitly allow AI search crawlers (GEO / AI Overview optimization)
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+# Sitemap
+Sitemap: https://rednotedownloader-ef1lnqv8.b4a.run/sitemap.xml

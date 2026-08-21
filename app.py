@@ -355,6 +355,122 @@ def about():
 
 
 # ---------------------------------------------------------------------------
+# Legal Pages (AdSense requirement)
+# ---------------------------------------------------------------------------
+
+@app.route("/privacy-policy")
+def privacy_policy():
+    return render_template(
+        "privacy-policy.html",
+        site=SITE,
+        active_page="privacy-policy",
+    )
+
+
+@app.route("/terms-of-service")
+def terms_of_service():
+    return render_template(
+        "terms-of-service.html",
+        site=SITE,
+        active_page="terms-of-service",
+    )
+
+
+@app.route("/dmca")
+def dmca():
+    return render_template(
+        "dmca.html",
+        site=SITE,
+        active_page="dmca",
+    )
+
+
+@app.route("/contact")
+def contact():
+    return render_template(
+        "contact.html",
+        site=SITE,
+        active_page="contact",
+    )
+
+
+@app.route("/disclaimer")
+def disclaimer():
+    return render_template(
+        "disclaimer.html",
+        site=SITE,
+        active_page="disclaimer",
+    )
+
+
+# ---------------------------------------------------------------------------
+# Blog / Content Pages
+# ---------------------------------------------------------------------------
+
+@app.route("/blog")
+def blog():
+    return render_template(
+        "blog.html",
+        site=SITE,
+        active_page="blog",
+    )
+
+
+@app.route("/blog/rednote-vs-tiktok-downloader")
+def blog_rednote_vs_tiktok():
+    return render_template(
+        "blog/rednote-vs-tiktok-downloader.html",
+        site=SITE,
+        active_page="blog",
+    )
+
+
+@app.route("/blog/how-to-save-rednote-videos-iphone")
+def blog_iphone():
+    return render_template(
+        "blog/how-to-save-rednote-videos-iphone.html",
+        site=SITE,
+        active_page="blog",
+    )
+
+
+@app.route("/blog/how-to-save-rednote-videos-android")
+def blog_android():
+    return render_template(
+        "blog/how-to-save-rednote-videos-android.html",
+        site=SITE,
+        active_page="blog",
+    )
+
+
+@app.route("/blog/rednote-live-photo-download")
+def blog_live_photo():
+    return render_template(
+        "blog/rednote-live-photo-download.html",
+        site=SITE,
+        active_page="blog",
+    )
+
+
+@app.route("/blog/rednote-video-formats-explained")
+def blog_formats():
+    return render_template(
+        "blog/rednote-video-formats-explained.html",
+        site=SITE,
+        active_page="blog",
+    )
+
+
+@app.route("/blog/rednote-downloader-alternatives")
+def blog_alternatives():
+    return render_template(
+        "blog/rednote-downloader-alternatives.html",
+        site=SITE,
+        active_page="blog",
+    )
+
+
+# ---------------------------------------------------------------------------
 # API Endpoints
 # ---------------------------------------------------------------------------
 

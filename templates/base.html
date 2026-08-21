@@ -6,15 +6,54 @@
   <title>{% block title %}{{ page_title }}{% endblock %}</title>
   <meta name="description" content="{% block description %}{{ page_description }}{% endblock %}">
   <meta name="keywords" content="{% block keywords %}{{ page_keywords }}{% endblock %}">
-  <link rel="canonical" href="{{ site.url }}{{ page_path }}">
-  <meta property="og:type" content="article">
-  <meta property="og:title" content="{% block og_title %}{{ page_title }}{% endblock %}">
-  <meta property="og:description" content="{% block og_description %}{{ page_description }}{% endblock %}">
+  <meta name="author" content="RedNote Video Downloader">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+  <meta name="language" content="English">
+  <meta name="revisit-after" content="7 days">
+  <link rel="canonical" href="{{ site.url }}{{ request.path if request.path != '/' else '' }}">
+  <link rel="alternate" hreflang="en" href="{{ site.url }}{{ request.path if request.path != '/' else '' }}">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="{% block og_title %}{{ self.title() }}{% endblock %}">
+  <meta property="og:description" content="{% block og_description %}{{ self.description() }}{% endblock %}">
+  <meta property="og:url" content="{{ site.url }}{{ request.path if request.path != '/' else '' }}">
+  <meta property="og:site_name" content="RedNote Video Downloader">
+  <meta property="og:locale" content="en_US">
+
+  <!-- Twitter Cards -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{% block tw_title %}{{ self.title() }}{% endblock %}">
+  <meta name="twitter:description" content="{% block tw_description %}{{ self.description() }}{% endblock %}">
+
+  <!-- AdSense Ready -->
+  <meta name="google-adsense-account" content="ca-pub-XXXXXXXXXXXXXXXX">
+
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Styles -->
   <link rel="stylesheet" href="static/css/style.css">
+
   {% block head %}{% endblock %}
+
+  <!-- Organization Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "RedNote Video Downloader",
+    "url": "{{ site.url }}",
+    "description": "Free online tool to download RedNote (Xiaohongshu) videos without watermark in HD, Full HD, and 4K quality.",
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": "{{ site.url }}/?url={search_term_string}",
+      "query-input": "required name=search_term_string"
+    }
+  }
+  </script>
 </head>
 <body>
   <header>
@@ -26,8 +65,8 @@
       <ul class="nav-links">
         <li><a href="." class="{{ 'active' if active_page == 'home' }}">Downloader</a></li>
         <li><a href="without-watermark" class="{{ 'active' if active_page == 'without-watermark' }}">No Watermark</a></li>
-        <li><a href="download-4k" class="{{ 'active' if active_page == 'download-4k' }}">4K Download</a></li>
-        <li><a href="how-to-download" class="{{ 'active' if active_page == 'how-to-download' }}">How To</a></li>
+        <li><a href="download-4k" class="{{ 'active' if active_page == 'download-4k' }}">4K</a></li>
+        <li><a href="blog" class="{{ 'active' if active_page == 'blog' }}">Blog</a></li>
         <li><a href="faq" class="{{ 'active' if active_page == 'faq' }}">FAQ</a></li>
       </ul>
     </nav>
@@ -38,16 +77,31 @@
   </section>
 
   <footer>
-    <p>
-      <a href=".">Downloader</a>
-      <a href="without-watermark">Without Watermark</a>
-      <a href="download-4k">4K Download</a>
-      <a href="download-hd">HD Download</a>
-      <a href="how-to-download">How To</a>
-      <a href="faq">FAQ</a>
-      <a href="about">About</a>
-    </p>
-    <p style="margin-top:16px;">&copy; 2026 RedNote Video Downloader. Not affiliated with Xiaohongshu. For personal use only.</p>
+    <div class="footer-links">
+      <div class="footer-col">
+        <h4>Tools</h4>
+        <a href=".">Video Downloader</a>
+        <a href="without-watermark">No Watermark</a>
+        <a href="download-4k">4K Download</a>
+        <a href="download-hd">HD Download</a>
+      </div>
+      <div class="footer-col">
+        <h4>Guides</h4>
+        <a href="how-to-download">How To Download</a>
+        <a href="blog">Blog</a>
+        <a href="faq">FAQ</a>
+        <a href="about">About Us</a>
+      </div>
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <a href="privacy-policy">Privacy Policy</a>
+        <a href="terms-of-service">Terms of Service</a>
+        <a href="dmca">DMCA</a>
+        <a href="disclaimer">Disclaimer</a>
+        <a href="contact">Contact</a>
+      </div>
+    </div>
+    <p class="footer-copy">&copy; 2026 RedNote Video Downloader. Not affiliated with Xiaohongshu (小红书). For personal use only. <a href="terms-of-service">Terms</a> · <a href="privacy-policy">Privacy</a></p>
   </footer>
   {% block scripts %}{% endblock %}
 </body>

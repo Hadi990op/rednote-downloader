@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+{% block title %}RedNote Video Formats Explained: MP4, Resolution & Quality Guide{% endblock %}
+{% block description %}Complete guide to RedNote (Xiaohongshu) video formats. Understand MP4, H.264, H.265, resolution options (720p, 1080p, 4K) and how to get the best quality downloads.{% endblock %}
+{% block keywords %}rednote video format, xiaohongshu video quality, rednote mp4, rednote resolution, rednote 4k 1080p 720p{% endblock %}
+
+{% block content %}
+<div class="seo-page">
+  <h1>RedNote Video Formats Explained: MP4, Resolution & Quality Guide</h1>
+  <p class="last-updated"><strong>Published:</strong> August 21, 2026 · <strong>Reading time:</strong> 7 minutes</p>
+
+  <p>When you download a video from RedNote (Xiaohongshu), the file you receive is typically an MP4 file — but there is more to video quality than just the file extension. Understanding video formats, codecs, resolutions, and bitrates helps you choose the right quality for your needs and ensures you get the best possible download.</p>
+
+  <h2>What Format Are RedNote Videos?</h2>
+  <p>RedNote videos are served in <strong>MP4 format</strong> (technically, MP4 is a container, not a codec). Inside the MP4 container, the video and audio are encoded using specific codecs. RedNote primarily uses:</p>
+  <ul>
+    <li><strong>Video codec:</strong> H.264 (AVC) or H.265 (HEVC)</li>
+    <li><strong>Audio codec:</strong> AAC</li>
+    <li><strong>Container:</strong> MP4 (.mp4 extension)</li>
+  </ul>
+  <p>H.264 is the most widely compatible codec — it plays on virtually every device and browser. H.265 (HEVC) offers better compression (smaller file sizes for the same quality) but may not play on older devices.</p>
+
+  <h2>Resolution Options on RedNote</h2>
+  <p>RedNote supports multiple video resolutions. The available resolutions depend on what the creator uploaded and whether the downloader has access to higher quality streams:</p>
+
+  <table class="comparison-table">
+    <tr><th>Resolution</th><th>Label</th><th>Typical File Size (30s video)</th><th>Login Required?</th></tr>
+    <tr><td>480p</td><td>SD</td><td>3-5 MB</td><td>No</td></tr>
+    <tr><td>720p</td><td>HD</td><td>8-15 MB</td><td>No</td></tr>
+    <tr><td>1080p</td><td>Full HD</td><td>15-30 MB</td><td>Yes (cookies)</td></tr>
+    <tr><td>1440p</td><td>2K</td><td>30-50 MB</td><td>Yes (cookies)</td></tr>
+    <tr><td>2160p</td><td>4K</td><td>50-120 MB</td><td>Yes (cookies)</td></tr>
+  </table>
+
+  <h2>720p HD — The Free Standard</h2>
+  <p>720p (1280x720 pixels) is the most common resolution available without authentication. For most purposes — social media sharing, personal viewing, and archiving — 720p is perfectly adequate. The file size is reasonable, and the quality is sharp enough for phone screens and most monitors.</p>
+
+  <h2>1080p Full HD — Needs Authentication</h2>
+  <p>1080p (1920x1080 pixels) offers significantly better quality than 720p, with twice the pixel count. However, accessing 1080p streams on RedNote typically requires authentication cookies. This means the server needs to be configured with valid Xiaohongshu login cookies to access higher quality streams. See our <a href="download-hd">HD download guide</a> for more information.</p>
+
+  <h2>4K (2160p) — The Highest Quality</h2>
+  <p>4K videos have four times the resolution of 1080p (3840x2160 pixels). Not all RedNote content is available in 4K — it depends on what the creator originally uploaded. 4K downloads require authentication and result in large file sizes. Visit our <a href="download-4k">4K download guide</a> for detailed instructions.</p>
+
+  <h2>Bitrate: What It Means for Quality</h2>
+  <p>Resolution tells you how many pixels a video has, but <strong>bitrate</strong> determines how much data is used per second of video. Higher bitrate generally means better quality (less compression artifacts) but larger file sizes.</p>
+  <p>RedNote's video streams typically have the following bitrates:</p>
+  <ul>
+    <li>720p: ~1500-2500 kbps</li>
+    <li>1080p: ~3000-5000 kbps</li>
+    <li>4K: ~8000-15000 kbps</li>
+  </ul>
+
+  <h2>How to Choose the Right Quality</h2>
+  <h3>For social media sharing</h3>
+  <p>720p HD is sufficient for Instagram, TikTok, Facebook, and most social platforms. These platforms re-compress videos anyway, so downloading in 4K for social media is wasteful.</p>
+
+  <h3>For personal viewing</h3>
+  <p>If you are watching on a phone or tablet, 720p or 1080p is plenty. 4K only makes a visible difference on large screens (55-inch TV or bigger) viewed up close.</p>
+
+  <h3>For editing or archiving</h3>
+  <p>If you plan to edit the video or want to keep it for future use, always download the highest available quality. You can always compress later, but you cannot add quality that was not downloaded.</p>
+
+  <h3>For limited data or storage</h3>
+  <p>If you are on mobile data or have limited storage, stick with 720p. The quality is good and the file size is manageable.</p>
+
+  <h2>Understanding the Download Output</h2>
+  <p>When you use our <a href=".">RedNote Video Downloader</a>, each available quality is shown with its label, bitrate, and format. For example:</p>
+  <ul>
+    <li><code>HD · 720p · 2000 kbps · MP4</code> — Standard HD quality</li>
+    <li><code>Full HD · 1080p · 4000 kbps · MP4</code> — Full HD quality</li>
+    <li><code>4K · 2160p · 12000 kbps · MP4</code> — Ultra HD quality</li>
+  </ul>
+
+  <h2>Conclusion</h2>
+  <p>Understanding video formats helps you make smart choices about download quality. For most users, 720p HD is the sweet spot — good quality, reasonable file size, and available without authentication. For those who need the best quality and have authentication configured, 1080p and 4K provide stunning detail.</p>
+</div>
+{% endblock %}
