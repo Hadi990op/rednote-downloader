@@ -1,0 +1,41 @@
+# RedNote Video Downloader
+
+> Free online tool to download RedNote (Xiaohongshu / 小红书) videos without watermark in HD, Full HD, and 4K quality. No signup required.
+
+## What This Site Does
+
+RedNote Video Downloader is a free web-based tool that extracts and downloads videos from Xiaohongshu (RedNote). Users paste a RedNote link (xiaohongshu.com or xhslink.com), choose a quality (720p HD, 1080p Full HD, or 2160p 4K), and download the video without watermark.
+
+## Key Pages
+
+- [RedNote Video Downloader (Main Tool)](/rnd/) — The downloader tool itself
+- [Download RedNote Videos Without Watermark](/rnd/without-watermark) — Guide to watermark-free downloads
+- [Download RedNote Videos in 4K](/rnd/download-4k) — How to get 4K quality
+- [Download RedNote Videos in HD](/rnd/download-hd) — HD download guide
+- [How to Download RedNote Videos](/rnd/how-to-download) — Step-by-step tutorial
+- [Frequently Asked Questions](/rnd/faq) — Common questions and answers
+- [About](/rnd/about) — About this tool
+
+## Target Keywords
+
+- rednote video downloader (primary)
+- rednote video download
+- rednote video downloader without watermark
+- rednote video download without watermark
+- rednote video download 4k
+- rednote video downloader 4k
+- rednote video download hd
+- rednote video download link
+
+## Content Structure
+
+Content is organized as a topic cluster. The main tool page is the cornerstone, with supporting pages targeting long-tail keywords. All pages interlink to build topical authority.
+
+## Technical Details
+
+- Built with Python Flask + yt-dlp
+- Server-side video extraction (no client-side processing)
+- Temp files deleted immediately after download
+- No user data stored
+- Mobile-first responsive design
+- Structured data: WebApplication, FAQPage, HowTo, Article, BreadcrumbList schemas

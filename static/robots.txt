@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /api/
+
+Sitemap: https://cheese-leader-wink-fantasy.2n6.me/rnd/sitemap.xml

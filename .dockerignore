@@ -1,0 +1,15 @@
+__pycache__/
+*.pyc
+*.pyo
+.git/
+.gitignore
+.env
+venv/
+.venv/
+__pycache__/
+downloads/
+*.mp4
+*.webm
+*.mkv
+Dockerfile
+.dockerignore

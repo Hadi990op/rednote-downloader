@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}{{ page_title }}{% endblock %}</title>
+  <meta name="description" content="{% block description %}{{ page_description }}{% endblock %}">
+  <meta name="keywords" content="{% block keywords %}{{ page_keywords }}{% endblock %}">
+  <link rel="canonical" href="{{ site.url }}{{ page_path }}">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="{% block og_title %}{{ page_title }}{% endblock %}">
+  <meta property="og:description" content="{% block og_description %}{{ page_description }}{% endblock %}">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="static/css/style.css">
+  {% block head %}{% endblock %}
+</head>
+<body>
+  <header>
+    <nav class="nav">
+      <a href="." class="logo">
+        <span class="logo-icon">R</span>
+        RedNote Downloader
+      </a>
+      <ul class="nav-links">
+        <li><a href="." class="{{ 'active' if active_page == 'home' }}">Downloader</a></li>
+        <li><a href="without-watermark" class="{{ 'active' if active_page == 'without-watermark' }}">No Watermark</a></li>
+        <li><a href="download-4k" class="{{ 'active' if active_page == 'download-4k' }}">4K Download</a></li>
+        <li><a href="how-to-download" class="{{ 'active' if active_page == 'how-to-download' }}">How To</a></li>
+        <li><a href="faq" class="{{ 'active' if active_page == 'faq' }}">FAQ</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="content">
+    {% block content %}{% endblock %}
+  </section>
+
+  <footer>
+    <p>
+      <a href=".">Downloader</a>
+      <a href="without-watermark">Without Watermark</a>
+      <a href="download-4k">4K Download</a>
+      <a href="download-hd">HD Download</a>
+      <a href="how-to-download">How To</a>
+      <a href="faq">FAQ</a>
+      <a href="about">About</a>
+    </p>
+    <p style="margin-top:16px;">&copy; 2026 RedNote Video Downloader. Not affiliated with Xiaohongshu. For personal use only.</p>
+  </footer>
+  {% block scripts %}{% endblock %}
+</body>
+</html>
