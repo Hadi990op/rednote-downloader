@@ -23,12 +23,12 @@ COPY . .
 RUN mkdir -p /tmp/rednote_downloads
 
 # Expose the port gunicorn will run on
-ENV PORT=5050
-EXPOSE 5050
+ENV PORT=80
+EXPOSE 80
 
-# Health check endpoint (for Koyeb/Render to detect if app is alive)
+# Health check endpoint (for platform to detect if app is alive)
 HEALTHCHECK --interval=30s --timeout=10s --start-period=10s --retries=3 \
-    CMD python3 -c "import urllib.request; urllib.request.urlopen('http://localhost:5050/health')" || exit 1
+    CMD python3 -c "import urllib.request; urllib.request.urlopen('http://localhost:${PORT:-80}/health')" || exit 1
 
-# Run with gunicorn — 2 workers, bind to all interfaces
-CMD ["gunicorn", "--bind", "0.0.0.0:5050", "--workers", "2", "--timeout", "120", "app:app"]
+# Run with gunicorn — 2 workers, bind to all interfaces on PORT (default 80)
+CMD ["sh", "-c", "gunicorn --bind 0.0.0.0:${PORT:-80} --workers 2 --timeout 120 app:app"]
