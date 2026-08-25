@@ -20,9 +20,22 @@ from flask import (
     send_file, after_this_request, abort,
 )
 
+from flask_compress import Compress
+
 import yt_dlp
 
 app = Flask(__name__)
+compress = Compress()
+compress.init_app(app)
+
+
+@app.after_request
+def add_security_headers(resp):
+    resp.headers.setdefault(
+        "Strict-Transport-Security",
+        "max-age=31536000; includeSubDomains",
+    )
+    return resp
 
 DOWNLOAD_DIR = Path(tempfile.gettempdir()) / "rednote_downloads"
 DOWNLOAD_DIR.mkdir(exist_ok=True)
