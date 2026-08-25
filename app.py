@@ -795,5 +795,45 @@ def llms_txt():
     return app.send_static_file("llms.txt")
 
 
+# ---------------------------------------------------------------------------
+# Keep-alive self-ping
+# Free-tier hosts (incl. JustRunMy) stop the app after a period of no inbound
+# traffic. This backgrounds a thread that pings our own public /health endpoint
+# on a timer so the app never goes idle. Configure with KEEPALIVE_INTERVAL
+# (seconds, 0 disables). Only runs when SITE_URL points to a real domain.
+# ---------------------------------------------------------------------------
+import threading as _threading
+import time as _time
+
+_keepalive_started = False
+
+
+def _start_keepalive(interval: int):
+    if interval <= 0:
+        return
+    url = (SITE.get("url") or "").rstrip("/") + "/health"
+    if not url.startswith("http") or "example.com" in url:
+        return  # SITE_URL not set to a real domain — nothing to ping
+
+    def _loop():
+        import urllib.request as _urllib
+        while True:
+            _time.sleep(interval)
+            try:
+                _urllib.urlopen(url, timeout=10)
+            except Exception:
+                pass
+
+    _threading.Thread(target=_loop, daemon=True).start()
+
+
+@app.before_request
+def _ensure_keepalive():
+    global _keepalive_started
+    if not _keepalive_started:
+        _keepalive_started = True
+        _start_keepalive(int(os.environ.get("KEEPALIVE_INTERVAL", "540")))
+
+
 if __name__ == "__main__":
     app.run(debug=False, host="0.0.0.0", port=5050)
