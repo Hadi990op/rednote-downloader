@@ -42,7 +42,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
   <!-- Styles -->
-  <link rel="stylesheet" href="static/css/style.css">
+  <link rel="stylesheet" href="/static/css/style.css">
 
   <!-- RSS feed for the blog -->
   <link rel="alternate" type="application/rss+xml" title="RedNote Video Downloader Blog" href="{{ site.url }}/feed.xml">
@@ -117,16 +117,16 @@
 <body>
   <header>
     <nav class="nav">
-      <a href="." class="logo">
+      <a href="/" class="logo">
         <span class="logo-icon">R</span>
         RedNote Downloader
       </a>
       <ul class="nav-links">
-        <li><a href="." class="{{ 'active' if active_page == 'home' }}">Downloader</a></li>
-        <li><a href="without-watermark" class="{{ 'active' if active_page == 'without-watermark' }}">No Watermark</a></li>
-        <li><a href="download-4k" class="{{ 'active' if active_page == 'download-4k' }}">4K</a></li>
-        <li><a href="blog" class="{{ 'active' if active_page == 'blog' }}">Blog</a></li>
-        <li><a href="faq" class="{{ 'active' if active_page == 'faq' }}">FAQ</a></li>
+        <li><a href="/" class="{{ 'active' if active_page == 'home' }}">Downloader</a></li>
+        <li><a href="/without-watermark" class="{{ 'active' if active_page == 'without-watermark' }}">No Watermark</a></li>
+        <li><a href="/download-4k" class="{{ 'active' if active_page == 'download-4k' }}">4K</a></li>
+        <li><a href="/blog" class="{{ 'active' if active_page == 'blog' }}">Blog</a></li>
+        <li><a href="/faq" class="{{ 'active' if active_page == 'faq' }}">FAQ</a></li>
       </ul>
     </nav>
   </header>
@@ -141,28 +141,28 @@
     <div class="footer-links">
       <div class="footer-col">
         <h4>Tools</h4>
-        <a href=".">Video Downloader</a>
-        <a href="without-watermark">No Watermark</a>
-        <a href="download-4k">4K Download</a>
-        <a href="download-hd">HD Download</a>
+        <a href="/">Video Downloader</a>
+        <a href="/without-watermark">No Watermark</a>
+        <a href="/download-4k">4K Download</a>
+        <a href="/download-hd">HD Download</a>
       </div>
       <div class="footer-col">
         <h4>Guides</h4>
-        <a href="how-to-download">How To Download</a>
-        <a href="blog">Blog</a>
-        <a href="faq">FAQ</a>
-        <a href="about">About Us</a>
+        <a href="/how-to-download">How To Download</a>
+        <a href="/blog">Blog</a>
+        <a href="/faq">FAQ</a>
+        <a href="/about">About Us</a>
       </div>
       <div class="footer-col">
         <h4>Legal</h4>
-        <a href="privacy-policy">Privacy Policy</a>
-        <a href="terms-of-service">Terms of Service</a>
-        <a href="dmca">DMCA</a>
-        <a href="disclaimer">Disclaimer</a>
-        <a href="contact">Contact</a>
+        <a href="/privacy-policy">Privacy Policy</a>
+        <a href="/terms-of-service">Terms of Service</a>
+        <a href="/dmca">DMCA</a>
+        <a href="/disclaimer">Disclaimer</a>
+        <a href="/contact">Contact</a>
       </div>
     </div>
-    <p class="footer-copy">&copy; 2026 RedNote Video Downloader. Not affiliated with Xiaohongshu (小红书). For personal use only. <a href="terms-of-service">Terms</a> · <a href="privacy-policy">Privacy</a></p>
+    <p class="footer-copy">&copy; 2026 RedNote Video Downloader. Not affiliated with Xiaohongshu (小红书). For personal use only. <a href="/terms-of-service">Terms</a> · <a href="/privacy-policy">Privacy</a></p>
   </footer>
   {% block scripts %}{% endblock %}
 </body>
