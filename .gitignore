@@ -8,3 +8,9 @@ downloads/
 *.mp4
 *.webm
 *.mkv
+
+# Runtime logs
+app.log
+app.err
+*.log
+
