@@ -801,7 +801,7 @@ def robots():
         "User-agent: *\n"
         "Allow: /\n"
         "Disallow: /api/\n"
-        "Disallow: /download\n\n"
+        "Disallow: /download$\n\n"
         "# Explicitly allow AI search crawlers (GEO / AI Overview optimization)\n"
         "User-agent: GPTBot\nAllow: /\n"
         "User-agent: ChatGPT-User\nAllow: /\n"
