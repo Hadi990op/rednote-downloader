@@ -228,11 +228,6 @@
     <p class="sub"><strong>Download RedNote (Xiaohongshu / 小红书) videos without watermark for free.</strong> Paste a RedNote link, choose HD, Full HD, or 4K quality, and save the video to your device — no signup, no software install, no watermark.</p>
 
     <div class="downloader">
-      {% if not auth_configured %}
-      <div class="warn-banner" id="warn-banner" style="display:none;">
-        ⚠️ Higher qualities (1080p/4K) need cookie configuration. 720p works without cookies.
-      </div>
-      {% endif %}
       <div class="input-row">
         <input type="text" id="url-input" placeholder="Paste RedNote link (xiaohongshu.com or xhslink.com)..." autocomplete="off" aria-label="RedNote video URL">
         <button class="btn-primary" id="fetch-btn">Get Video</button>
