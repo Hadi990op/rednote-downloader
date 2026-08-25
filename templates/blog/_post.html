@@ -36,7 +36,7 @@
     {% for slug, title, excerpt in posts %}
       {% if request.path != "/" + slug %}
       <li>
-        <a href="{{ slug }}"><strong>{{ title }}</strong></a>
+        <a href="/{{ slug }}"><strong>{{ title }}</strong></a>
         <p>{{ excerpt }}</p>
       </li>
       {% endif %}
