@@ -8,6 +8,7 @@ import re
 import uuid
 import json
 import tempfile
+from datetime import datetime, timezone
 from pathlib import Path
 from urllib.parse import urlparse, unquote
 
@@ -277,10 +278,14 @@ def _download_live_photo(info: dict, format_id: str, output_path: Path) -> Path:
 # SEO Content Pages
 # ---------------------------------------------------------------------------
 
+# Site URL is configurable so canonical/OG/sitemap tags point to the real domain.
+# Set SITE_URL env var when deploying (no trailing slash). Falls back to a placeholder.
+SITE_URL = os.environ.get("SITE_URL", "https://rednote-downloader.example.com").rstrip("/")
 SITE = {
     "name": "RedNote Video Downloader",
-    "url": "https://cheese-leader-wink-fantasy.2n6.me/rnd/",
-    "domain": "cheese-leader-wink-fantasy.2n6.me",
+    "url": SITE_URL,
+    "domain": urlparse(SITE_URL).netloc,
+    "og_image": f"{SITE_URL}/static/img/og-image.png",
 }
 
 
@@ -718,12 +723,71 @@ def api_download():
 
 @app.route("/robots.txt")
 def robots():
-    return app.send_static_file("robots.txt")
+    body = (
+        "# RedNote Video Downloader — robots.txt\n"
+        "# Allow all crawlers including AI search engines\n"
+        "User-agent: *\n"
+        "Allow: /\n"
+        "Disallow: /api/\n"
+        "Disallow: /download\n\n"
+        "# Explicitly allow AI search crawlers (GEO / AI Overview optimization)\n"
+        "User-agent: GPTBot\nAllow: /\n"
+        "User-agent: ChatGPT-User\nAllow: /\n"
+        "User-agent: PerplexityBot\nAllow: /\n"
+        "User-agent: ClaudeBot\nAllow: /\n"
+        "User-agent: Google-Extended\nAllow: /\n"
+        "User-agent: Bingbot\nAllow: /\n"
+        "User-agent: Applebot-Extended\nAllow: /\n\n"
+        f"# Sitemap\nSitemap: {SITE['url']}/sitemap.xml\n"
+    )
+    return body, 200, {"Content-Type": "text/plain; charset=utf-8"}
+
+
+# Routes included in the sitemap (path, changefreq, priority)
+_SITEMAP_ROUTES = [
+    ("/", "weekly", 1.0),
+    ("/without-watermark", "monthly", 0.9),
+    ("/download-4k", "monthly", 0.9),
+    ("/download-hd", "monthly", 0.8),
+    ("/how-to-download", "monthly", 0.8),
+    ("/faq", "monthly", 0.7),
+    ("/blog", "weekly", 0.8),
+    ("/blog/rednote-vs-tiktok-downloader", "monthly", 0.7),
+    ("/blog/how-to-save-rednote-videos-iphone", "monthly", 0.7),
+    ("/blog/how-to-save-rednote-videos-android", "monthly", 0.7),
+    ("/blog/rednote-live-photo-download", "monthly", 0.7),
+    ("/blog/rednote-video-formats-explained", "monthly", 0.7),
+    ("/blog/rednote-downloader-alternatives", "monthly", 0.7),
+    ("/about", "yearly", 0.5),
+    ("/privacy-policy", "yearly", 0.3),
+    ("/terms-of-service", "yearly", 0.3),
+    ("/dmca", "yearly", 0.3),
+    ("/contact", "yearly", 0.3),
+    ("/disclaimer", "yearly", 0.3),
+]
+
+_LASTMOD = datetime.now(timezone.utc).strftime("%Y-%m-%d")
 
 
 @app.route("/sitemap.xml")
 def sitemap():
-    return app.send_static_file("sitemap.xml")
+    urls = []
+    for path, changefreq, priority in _SITEMAP_ROUTES:
+        urls.append(
+            "  <url>\n"
+            f"    <loc>{SITE['url']}{path}</loc>\n"
+            f"    <lastmod>{_LASTMOD}</lastmod>\n"
+            f"    <changefreq>{changefreq}</changefreq>\n"
+            f"    <priority>{priority}</priority>\n"
+            "  </url>"
+        )
+    body = (
+        '<?xml version="1.0" encoding="UTF-8"?>\n'
+        '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
+        + "\n".join(urls)
+        + "\n</urlset>\n"
+    )
+    return body, 200, {"Content-Type": "application/xml; charset=utf-8"}
 
 
 @app.route("/llms.txt")

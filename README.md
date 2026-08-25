@@ -53,10 +53,13 @@ docker run -p 5050:5050 rednote-downloader
 
 | Variable | Description | Required |
 |----------|-------------|----------|
-| `XHS_COOKIES_BROWSER` | Browser name for cookie extraction (e.g. `chrome`) | No — for 1080p/4K |
-| `XHS_COOKIES_FILE` | Path to cookies.txt file | No — for 1080p/4K |
+| `SITE_URL` | Your public site URL (no trailing slash), e.g. `https://your-domain.com`. Drives canonical, Open Graph, Twitter, and sitemap URLs. | Recommended |
+| `XHS_COOKIES_BROWSER` | Browser name for cookie extraction (e.g. `chrome`) | No - for 1080p/4K |
+| `XHS_COOKIES_FILE` | Path to cookies.txt file | No - for 1080p/4K |
 
 Without cookies: 720p works. With cookies: 1080p and 4K available.
+
+> Set `SITE_URL` before deploying so all SEO tags and the sitemap point to your real domain. `robots.txt` and `sitemap.xml` are generated dynamically from this value.
 
 ## License
 
