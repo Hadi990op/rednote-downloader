@@ -7,6 +7,7 @@ import os
 import re
 import uuid
 import json
+import html
 import tempfile
 from datetime import datetime, timezone
 from pathlib import Path
@@ -475,6 +476,77 @@ def blog_alternatives():
     )
 
 
+@app.route("/blog/rednote-downloader-safety-legal")
+def blog_safety():
+    return render_template(
+        "blog/rednote-downloader-safety-legal.html",
+        site=SITE,
+        active_page="blog",
+    )
+
+
+@app.route("/blog/rednote-desktop-pc-mac")
+def blog_desktop():
+    return render_template(
+        "blog/rednote-desktop-pc-mac.html",
+        site=SITE,
+        active_page="blog",
+    )
+
+
+@app.route("/blog/rednote-watermark-removal-guide")
+def blog_watermark():
+    return render_template(
+        "blog/rednote-watermark-removal-guide.html",
+        site=SITE,
+        active_page="blog",
+    )
+
+
+# Blog posts metadata (used by the RSS feed)
+BLOG_POSTS = [
+    {"slug": "rednote-vs-tiktok-downloader", "title": "RedNote vs TikTok Downloader: Which Is Better in 2026?", "description": "Side-by-side comparison of download speed, quality, watermark removal, and features.", "date": "2026-08-21"},
+    {"slug": "how-to-save-rednote-videos-iphone", "title": "How to Save RedNote Videos on iPhone", "description": "Step-by-step iOS guide to download Xiaohongshu videos without installing apps.", "date": "2026-08-21"},
+    {"slug": "how-to-save-rednote-videos-android", "title": "How to Download RedNote Videos on Android", "description": "Save Xiaohongshu videos on any Android phone via your browser.", "date": "2026-08-21"},
+    {"slug": "rednote-live-photo-download", "title": "How to Download RedNote Live Photos", "description": "Extract the video component of RedNote Live Photos and save them in full quality.", "date": "2026-08-21"},
+    {"slug": "rednote-video-formats-explained", "title": "RedNote Video Formats Explained", "description": "MP4, resolution and quality guide: 720p, 1080p and 4K.", "date": "2026-08-21"},
+    {"slug": "rednote-downloader-alternatives", "title": "10 Best RedNote Video Downloaders in 2026", "description": "Tested and compared: which RedNote downloaders actually work.", "date": "2026-08-21"},
+    {"slug": "rednote-downloader-safety-legal", "title": "Is RedNote Downloader Safe & Legal? Complete Guide", "description": "A complete safety and legality guide for downloading RedNote videos.", "date": "2026-08-25"},
+    {"slug": "rednote-desktop-pc-mac", "title": "How to Download RedNote Videos on PC & Mac", "description": "Download RedNote videos on Windows and macOS with no software install.", "date": "2026-08-25"},
+    {"slug": "rednote-watermark-removal-guide", "title": "How to Remove the RedNote Watermark", "description": "Get clean, watermark-free RedNote videos by downloading the original source.", "date": "2026-08-25"},
+]
+
+
+@app.route("/feed.xml")
+def feed():
+    items = []
+    for p in BLOG_POSTS:
+        link = f"{SITE['url']}/blog/{p['slug']}"
+        pub = datetime.strptime(p["date"], "%Y-%m-%d").strftime("%a, %d %b %Y 00:00:00 +0000")
+        items.append(
+            "  <item>\n"
+            f"    <title>{html.escape(p['title'])}</title>\n"
+            f"    <link>{link}</link>\n"
+            f"    <guid>{link}</guid>\n"
+            f"    <description>{html.escape(p['description'])}</description>\n"
+            f"    <pubDate>{pub}</pubDate>\n"
+            "  </item>"
+        )
+    body = (
+        '<?xml version="1.0" encoding="UTF-8"?>\n'
+        '<rss version="2.0">\n'
+        "  <channel>\n"
+        "    <title>RedNote Video Downloader Blog</title>\n"
+        f"    <link>{SITE['url']}/blog</link>\n"
+        "    <description>Tips, guides and tutorials for downloading RedNote (Xiaohongshu) videos without watermark.</description>\n"
+        "    <language>en</language>\n"
+        f"    <lastBuildDate>{datetime.now(timezone.utc).strftime('%a, %d %b %Y %H:%M:%S +0000')}</lastBuildDate>\n"
+        + "\n".join(items)
+        + "\n  </channel>\n</rss>\n"
+    )
+    return body, 200, {"Content-Type": "application/rss+xml; charset=utf-8"}
+
+
 # ---------------------------------------------------------------------------
 # API Endpoints
 # ---------------------------------------------------------------------------
@@ -758,6 +830,9 @@ _SITEMAP_ROUTES = [
     ("/blog/rednote-live-photo-download", "monthly", 0.7),
     ("/blog/rednote-video-formats-explained", "monthly", 0.7),
     ("/blog/rednote-downloader-alternatives", "monthly", 0.7),
+    ("/blog/rednote-downloader-safety-legal", "monthly", 0.7),
+    ("/blog/rednote-desktop-pc-mac", "monthly", 0.7),
+    ("/blog/rednote-watermark-removal-guide", "monthly", 0.7),
     ("/about", "yearly", 0.5),
     ("/privacy-policy", "yearly", 0.3),
     ("/terms-of-service", "yearly", 0.3),

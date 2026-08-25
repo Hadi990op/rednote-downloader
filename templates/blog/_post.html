@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{# Reusable layout for blog posts. Auto-injects BlogPosting + BreadcrumbList
+   JSON-LD and appends a "Related Articles" internal-linking section. #}
+
+{% block schema %}
+{{ breadcrumb_schema([
+  {"@type": "ListItem", "position": 1, "name": "Home", "item": site.url},
+  {"@type": "ListItem", "position": 2, "name": "Blog", "item": site.url + "/blog"},
+  {"@type": "ListItem", "position": 3, "name": self.title()|striptags, "item": site.url + request.path}
+]) }}
+{{ article_schema(
+  self.title()|striptags,
+  self.description()|striptags,
+  site.url + request.path,
+  date_published|default("2026-08-21"),
+  date_modified|default("2026-08-21"),
+  site.og_image
+) }}
+{% endblock %}
+
+{% block after_content %}
+{% set posts = [
+  ("blog/rednote-vs-tiktok-downloader", "RedNote vs TikTok Downloader: Which Is Better?", "Side-by-side comparison of download speed, quality, watermark removal, and features."),
+  ("blog/how-to-save-rednote-videos-iphone", "How to Save RedNote Videos on iPhone", "Step-by-step iOS guide to download Xiaohongshu videos without installing apps."),
+  ("blog/how-to-save-rednote-videos-android", "How to Download RedNote Videos on Android", "Save Xiaohongshu videos on any Android phone via your browser."),
+  ("blog/rednote-live-photo-download", "How to Download RedNote Live Photos", "Extract the video component of RedNote Live Photos and save them in full quality."),
+  ("blog/rednote-video-formats-explained", "RedNote Video Formats Explained", "MP4, resolution and quality guide: 720p, 1080p and 4K."),
+  ("blog/rednote-downloader-alternatives", "10 Best RedNote Video Downloaders in 2026", "Tested and compared: which RedNote downloaders actually work."),
+  ("blog/rednote-downloader-safety-legal", "Is RedNote Downloader Safe & Legal?", "A complete safety and legality guide for downloading RedNote videos."),
+  ("blog/rednote-desktop-pc-mac", "Download RedNote Videos on PC & Mac", "How to save Xiaohongshu videos on Windows and macOS."),
+  ("blog/rednote-watermark-removal-guide", "How to Remove the RedNote Watermark", "Get clean, watermark-free RedNote videos in a few steps.")
+] %}
+<section class="content related-posts">
+  <h2>Related Articles</h2>
+  <ul class="related-list">
+    {% for slug, title, excerpt in posts %}
+      {% if request.path != "/" + slug %}
+      <li>
+        <a href="{{ slug }}"><strong>{{ title }}</strong></a>
+        <p>{{ excerpt }}</p>
+      </li>
+      {% endif %}
+    {% endfor %}
+  </ul>
+  <p style="margin-top:18px;"><a href="blog" class="btn-primary" style="display:inline-block;text-decoration:none;">← Back to all articles</a></p>
+</section>
+{% endblock %}

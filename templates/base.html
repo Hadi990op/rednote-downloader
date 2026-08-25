@@ -44,6 +44,41 @@
   <!-- Styles -->
   <link rel="stylesheet" href="static/css/style.css">
 
+  <!-- RSS feed for the blog -->
+  <link rel="alternate" type="application/rss+xml" title="RedNote Video Downloader Blog" href="{{ site.url }}/feed.xml">
+
+  {# ---- JSON-LD macros (BlogPosting / BreadcrumbList / FAQPage) ---- #}
+  {% macro breadcrumb_schema(items) -%}
+  <script type="application/ld+json">
+  {{ {"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": items} | tojson }}
+  </script>
+  {%- endmacro %}
+
+  {% macro article_schema(headline, description, url, date_published, date_modified, image) -%}
+  <script type="application/ld+json">
+  {{ {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": headline,
+    "description": description,
+    "url": url,
+    "mainEntityOfPage": url,
+    "datePublished": date_published,
+    "dateModified": date_modified,
+    "author": {"@type": "Organization", "name": "RedNote Video Downloader"},
+    "publisher": {"@type": "Organization", "name": "RedNote Video Downloader", "logo": {"@type": "ImageObject", "url": image}},
+    "image": image,
+    "inLanguage": "en"
+  } | tojson }}
+  </script>
+  {%- endmacro %}
+
+  {% macro faq_schema(qa_list) -%}
+  <script type="application/ld+json">
+  {{ {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": qa_list} | tojson }}
+  </script>
+  {%- endmacro %}
+
   {% block head %}{% endblock %}
 
   <!-- Organization Schema -->
@@ -60,7 +95,24 @@
       "query-input": "required name=search_term_string"
     }
   }
+  }
   </script>
+
+  <!-- Organization entity (site-wide) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "RedNote Video Downloader",
+    "url": "{{ site.url }}",
+    "logo": "{{ site.og_image }}",
+    "description": "Free online tool to download RedNote (Xiaohongshu) videos without watermark in HD, Full HD, and 4K quality.",
+    "sameAs": ["{{ site.url }}"]
+  }
+  </script>
+
+  {# Page-specific structured data (BlogPosting, FAQPage, etc.) #}
+  {% block schema %}{% endblock %}
 </head>
 <body>
   <header>
@@ -82,6 +134,8 @@
   <section class="content">
     {% block content %}{% endblock %}
   </section>
+
+  {% block after_content %}{% endblock %}
 
   <footer>
     <div class="footer-links">
